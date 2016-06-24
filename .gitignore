@@ -1,3 +1,6 @@
 # Temp Files
 *.swp
 
+# Pmars Files
+pmars
+pmars.mac

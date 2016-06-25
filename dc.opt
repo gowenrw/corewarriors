@@ -6,7 +6,7 @@
 -p 8000           ;max. proc.
 -c 80000          ;cycles
 -l 100            ;warrior length
--d 100            ;warrior length
+-d 100            ;warrior min distance
 -v 504            ;coreview mode - speed(0-7) + video-mode + display-detail(0-4)
 -geometry 640x480 ;xwindows size
 -e                ;enter debug mode - must type go to start battle

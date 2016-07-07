@@ -4,15 +4,26 @@ import subprocess
 
 testfile = sys.argv[1]
 
-benchstats = "Benchmark Results for " + testfile + "\nEnemy - - - - - - - - - - - W L T\n"
+pmarsopt = "pmars.opt"
 
-tests = ["paper-time0000.red", "paper-nobody00.red", "paper-paperone.red", "paper-marcia13.red",
-         "scisr-irongate.red", "scisr-pswing00.red", "scisr-rave0000.red", "scisr-thermite.red",
-         "stone-bluefunk.red", "stone-cannon00.red", "stone-fstorm00.red", "stone-tornado0.red"]
+papertests = ["paper-time0000.red", "paper-nobody00.red", "paper-paperone.red", "paper-marcia13.red"]
+scisrtests = ["scisr-irongate.red", "scisr-pswing00.red", "scisr-rave0000.red", "scisr-thermite.red"]
+stonetests = ["stone-bluefunk.red", "stone-cannon00.red", "stone-fstorm00.red", "stone-tornado0.red"]
 
-for enemy in tests:
-    results = subprocess.Popen(["./pmars", "-@", "bench.opt", testfile, enemy], stdout=subprocess.PIPE)
-    for line in results.stdout:
-        if "Results" in line:
-		benchstats = benchstats + enemy + " " + line
-print benchstats
+benchtesttypes = ["papertests", "scisrtests", "stonetests"]
+benchheaders = {"papertests" : "Paper Enemies- - - W  L  T \n", "scisrtests" : "Scissor Enemies- - W  L  T \n", "stonetests" : "Stone Enemies- - - W  L  T \n"}
+
+print "Benchmark Results for " + testfile + "\n"
+
+for testtype in benchtesttypes:
+    tests = eval(testtype)
+    benchstats = benchheaders[testtype]
+    for enemy in tests:
+        results = subprocess.Popen(["./pmars", "-@", pmarsopt, testfile, enemy], stdout=subprocess.PIPE)
+        for line in results.stdout:
+            if "Results" in line:
+                lineseg = line.split()
+                benchstats = benchstats + enemy + " " + lineseg[1].zfill(2) + " " + lineseg[2].zfill(2) + " " + lineseg[3].zfill(2) + "\n"
+    print benchstats
+
+

@@ -10,4 +10,4 @@
 -v 504            ;coreview mode - speed(0-7) + video-mode + display-detail(0-4)
 -geometry 640x480 ;xwindows size
 -r 5              ;rounds of battle
-;-e                ;enter debug mode - must type go to start battle
+-e                ;enter debug mode - must type go to start battle

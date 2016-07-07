@@ -1,2 +1,2 @@
 #!/bin/bash
-./pmars -@ dc.opt $1 $2
+./pmars -@ dc.opt $1 $2 &>bresults.txt
